@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use App\Factories\LoggerFactory;
@@ -13,5 +14,8 @@ return function (ContainerBuilder $containerBuilder) {
 
     $container[LoggerInterface::class] = DI\factory(LoggerFactory::class);
     $container[PhpRenderer::class] = DI\factory(RendererFactory::class);
+
+    $container[PDO::class] = DI\factory(PdoFactory::class);
+
     $containerBuilder->addDefinitions($container);
 };
