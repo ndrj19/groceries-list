@@ -8,8 +8,9 @@ class ArchiveHelper
     {
         $output = '';
         foreach ($archivedShoppingItems as $archivedShoppingItem) {
-            $output .= $archivedShoppingItem['name']
-                . '<br>';
+            $output .= '<div class="listitem">'
+                . $archivedShoppingItem['name']
+                . '</div>';
         }
         return $output;
     }

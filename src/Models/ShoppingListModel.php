@@ -17,14 +17,14 @@ class ShoppingListModel
 
     public function getShoppingItems(): array
     {
-        $query = $this->db->prepare('SELECT `id`, `name` FROM `shopping_list_items` WHERE `done` = FALSE AND `archived` = FALSE');
+        $query = $this->db->prepare('SELECT `id`, `name` FROM `shopping_list_items` WHERE `done` = FALSE AND `archived` = FALSE ORDER BY `name`');
         $query->execute();
         return $query->fetchAll();
     }
 
     public function getDoneShoppingItems(): array
     {
-        $query = $this->db->prepare('SELECT `id`, `name` FROM `shopping_list_items` WHERE `done` = TRUE AND `archived` = FALSE');
+        $query = $this->db->prepare('SELECT `id`, `name` FROM `shopping_list_items` WHERE `done` = TRUE AND `archived` = FALSE ORDER BY `name`');
         $query->execute();
         return $query->fetchAll();
     }

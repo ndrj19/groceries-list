@@ -8,20 +8,24 @@ class IndexHelper
     {
         $output = '';
         foreach ($shoppingItems as $shoppingItem) {
-            $output .= $shoppingItem['name']
-                . ' - '
-                . '<a href="/removeitem/'
+            $output .= '<div class="listitem">'
+                . '<a class "done" href="/markdone/'
                 . $shoppingItem['id']
-                . '">Remove</a>'
-                . ' - '
-                . '<a href="/markdone/'
+                . '"><i class="fa-regular fa-circle" style="color: #8A2BE2;"></i></a>'
+                . $shoppingItem['name']
+                . '<a class="remove" href="/removeitem/'
                 . $shoppingItem['id']
-                . '">Done</a>'
-                . '<br>';
+                . '"><i class="fa-solid fa-circle-minus fa-2xs" style="color: #8A2BE2;"></i></a>'
+                . '</div>';
         }
-        $output .= '<hr>';
         foreach ($doneShoppingItems as $doneShoppingItem) {
-            $output .= $doneShoppingItem['name'] . '<br>';
+            $output .= '<div class="listitem">'
+                . '<i class="fa-solid fa-circle-check" style="color: #8A2BE2;"></i>'
+                . $doneShoppingItem['name'] . '<br>'
+                . '<a class="remove" href="/removeitem/'
+                . $shoppingItem['id']
+                . '"><i class="fa-solid fa-circle-minus fa-2xs" style="color: #8A2BE2;"></i></a>'
+                . '</div>';
         }
         return $output;
     }
