@@ -19,8 +19,9 @@ class RemoveShoppingListItemController
 
     public function __invoke(RequestInterface $request, ResponseInterface $response, array $args)
     {
-        $this->model->removeShoppingItem();
-        // return $response->withJson(['example' => $data['name']]);
+        $id = intval($args['id']);
+        $this->model->removeShoppingItem($id);
+        // return $response->withJson(['example' => $id]);
         return $response->withHeader('Location', '/')->withStatus(301);
     }
 }

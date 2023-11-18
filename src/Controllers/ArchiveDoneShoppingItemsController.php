@@ -9,7 +9,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\PhpRenderer;
 
-class ShoppingListController
+class ArchiveDoneShoppingItemsController
 {
     private ShoppingListModel $model;
     private PhpRenderer $renderer;
@@ -22,9 +22,13 @@ class ShoppingListController
 
     public function __invoke(RequestInterface $request, ResponseInterface $response, array $args)
     {
-        $data = $this->model->getShoppingItems();
-        $dataDone = $this->model->getDoneShoppingItems();
-        // return $response->withJson(['example' => $data]);
-        return $this->renderer->render($response, 'index.php', ['shoppingItems' => $data, 'doneShoppingItems' => $dataDone]);
+        $action = $args['action'];
+        if ($action === 'archive') {
+            $this->model->archiveDoneItems();
+            return $response->withHeader('Location', '/')->withStatus(301);
+        } elseif ($action === 'view') {
+            $data = $this->model->getArchivedItems();
+            return $this->renderer->render($response, 'archive.php', ['archivedItems' => $data]);
+        }
     }
 }

@@ -10,18 +10,18 @@
 <body>
 
     <form action="/additem" method="POST">
-        <label for="additem">Add item</label>
         <input type="text" id="additem" name="name">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Add to list">
     </form>
 
     <?php
-    echo App\ViewHelpers\IndexHelper::displayShoppingItems($shoppingItems);
+    echo App\ViewHelpers\IndexHelper::displayShoppingItems($shoppingItems, $doneShoppingItems);
     ?>
 
-    <hr>
+    <a href="/archive/archive">Archive ALL DONE</a>
+    <br>
+    <a href="/archive/view">View archive</a>
 
-    <a href="/removeitem">REMOVE</a>
 </body>
 
 </html>
